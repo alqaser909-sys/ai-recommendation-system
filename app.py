@@ -8,18 +8,18 @@ app = Flask(__name__)
 app.secret_key = "simple-secret-key"
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-USERS_FILE = os.path.join(BASE_DIR, "users.csv")
-PRODUCTS_FILE = os.path.join(BASE_DIR, "products.csv")
-RATINGS_FILE = os.path.join(BASE_DIR, "ratings.csv")
-BEHAVIOR_FILE = os.path.join(BASE_DIR, "behavior.csv")
+USERS_FILE = os.path.join(BASE_DIR, "users.xlsx")
+PRODUCTS_FILE = os.path.join(BASE_DIR, "products.xlsx")
+RATINGS_FILE = os.path.join(BASE_DIR, "ratings.xlsx")
+BEHAVIOR_FILE = os.path.join(BASE_DIR, "behavior.xlsx")
 
 
 def read_excel(file_name):
-    return pd.read_csv(file_name, engine="openpyxl")
+    return pd.read_excel(file_name, engine="openpyxl")
 
 
 def get_products():
-    return read_csv(PRODUCTS_FILE)
+    return read_excel(PRODUCTS_FILE)
 
 
 def get_engine():
@@ -32,7 +32,7 @@ def get_engine():
 
 
 def save_behavior(user_id, product_id, action):
-    behavior = read_csv(BEHAVIOR_FILE)
+    behavior = read_excel(BEHAVIOR_FILE)
 
     for col in ["viewed", "clicked", "purchased"]:
         if col not in behavior.columns:
