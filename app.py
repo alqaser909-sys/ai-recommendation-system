@@ -15,11 +15,11 @@ BEHAVIOR_FILE = os.path.join(BASE_DIR, "behavior.csv")
 
 
 def read_excel(file_name):
-    return pd.read_excel(file_name, engine="openpyxl")
+    return pd.read_csv(file_name, engine="openpyxl")
 
 
 def get_products():
-    return read_excel(PRODUCTS_FILE)
+    return read_csv(PRODUCTS_FILE)
 
 
 def get_engine():
@@ -32,7 +32,7 @@ def get_engine():
 
 
 def save_behavior(user_id, product_id, action):
-    behavior = read_excel(BEHAVIOR_FILE)
+    behavior = read_csv(BEHAVIOR_FILE)
 
     for col in ["viewed", "clicked", "purchased"]:
         if col not in behavior.columns:
